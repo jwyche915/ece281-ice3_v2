@@ -49,7 +49,15 @@ begin
        w_addends <= x"FF"; w_Cin <= '1'; wait for 10 ns;
 	       assert (w_sum = x"F" and w_Cout = '1') report "bad with ones" severity failure;
        -- TODO, a few other test cases
-	
+       w_addends <= x"00"; w_Cin <= '1'; wait for 10 ns;
+            assert (w_sum = x"1" and w_Cout = '0') report "incorrect for 0+0+1" severity failure;
+       w_addends <= x"54"; w_Cin <= '0'; wait for 10 ns;
+            assert (w_sum = x"9" and w_Cout = '0') report "incorrect for 5+4+0" severity failure;
+       w_addends <= x"27"; w_Cin <= '1'; wait for 10 ns;
+            assert (w_sum = x"A" and w_Cout = '0') report "incorrect for 2+7+1" severity failure;
+       w_addends <= x"A9"; w_Cin <= '1'; wait for 10 ns;
+            assert (w_sum = x"4" and w_Cout = '1') report "incorrect for A+9+1" severity failure;
+       
 		wait; -- wait forever
 	end process;	
 	-----------------------------------------------------	
